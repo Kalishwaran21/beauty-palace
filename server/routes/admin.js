@@ -13,7 +13,6 @@ router.get('/dashboard', protect, admin, async (req, res) => {
         const pendingAppointments = await Appointment.countDocuments({ status: 'pending' });
         const totalServices = await Service.countDocuments({ isActive: true });
         const recentAppointments = await Appointment.find()
-            .populate('user', 'name email')
             .populate('services', 'name price')
             .sort({ createdAt: -1 })
             .limit(10);
@@ -27,7 +26,6 @@ router.get('/dashboard', protect, admin, async (req, res) => {
 router.get('/appointments', protect, admin, async (req, res) => {
     try {
         const appointments = await Appointment.find()
-            .populate('user', 'name email phone')
             .populate('services', 'name price category')
             .sort({ createdAt: -1 });
         res.json(appointments);
@@ -43,7 +41,7 @@ router.put('/appointments/:id', protect, admin, async (req, res) => {
             req.params.id,
             { status: req.body.status },
             { new: true }
-        ).populate('user', 'name email').populate('services', 'name price');
+        ).populate('services', 'name price');
         res.json(appointment);
     } catch (err) {
         res.status(500).json({ message: err.message });
