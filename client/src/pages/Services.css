@@ -1,0 +1,3 @@
+.service-full-card .service-img-wrap { height: 200px; overflow: hidden; }
+.service-full-card .service-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.service-full-card:hover .service-img-wrap img { transform: scale(1.05); }
