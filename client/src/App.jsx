@@ -8,9 +8,7 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Gallery from './pages/Gallery';
 import Login from './pages/Login';
-import Register from './pages/Register';
 import BookAppointment from './pages/BookAppointment';
-import MyAppointments from './pages/MyAppointments';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminAppointments from './pages/admin/AdminAppointments';
 import AdminServices from './pages/admin/AdminServices';
@@ -42,9 +40,7 @@ const AppLayout = () => (
                 <Route path="/services" element={<Services />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/book" element={<ProtectedRoute><BookAppointment /></ProtectedRoute>} />
-                <Route path="/my-appointments" element={<ProtectedRoute><MyAppointments /></ProtectedRoute>} />
+                <Route path="/book" element={<BookAppointment />} />
                 <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
                 <Route path="/admin/appointments" element={<AdminRoute><AdminAppointments /></AdminRoute>} />
                 <Route path="/admin/services" element={<AdminRoute><AdminServices /></AdminRoute>} />

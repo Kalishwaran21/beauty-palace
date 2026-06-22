@@ -43,27 +43,10 @@ export default function Navbar() {
                 </ul>
 
                 <div className="nav-right">
-                    {user ? (
-                        <div
-                            className="user-dropdown"
-                            onMouseEnter={() => setDropOpen(true)}
-                            onMouseLeave={() => setDropOpen(false)}
-                        >
-                            <button className="user-btn" onClick={() => setDropOpen(!dropOpen)}>
-                                👤 {user.name.split(' ')[0]} ▾
-                            </button>
-                            {dropOpen && (
-                                <div className="dropdown-menu" onClick={() => setDropOpen(false)}>
-                                    <Link to="/my-appointments">📅 My Appointments</Link>
-                                    {isAdmin && <Link to="/admin">⚙ Dashboard</Link>}
-                                    <button onClick={handleLogout}>🚪 Logout</button>
-                                </div>
-                            )}
-                        </div>
-                    ) : (
+                    {isAdmin && (
                         <div className="auth-btns">
-                            <Link to="/login" className="btn btn-ghost btn-sm">Login</Link>
-                            <Link to="/register" className="btn btn-gold btn-sm">Sign Up</Link>
+                            <Link to="/admin" className="btn btn-ghost btn-sm">Dashboard</Link>
+                            <button onClick={handleLogout} className="btn btn-gold btn-sm">Logout</button>
                         </div>
                     )}
                     <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">

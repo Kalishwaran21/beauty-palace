@@ -63,11 +63,16 @@ export default function AdminAppointments() {
                                 <tbody>
                                     {filtered.map(apt => (
                                         <tr key={apt._id} style={{ borderBottom: '1px solid var(--border)' }}>
-                                            <td style={{ padding: '0.9rem 1rem', color: 'var(--text-light)' }}>{apt.user?.name}</td>
-                                            <td style={{ padding: '0.9rem 1rem', color: 'var(--text-light)' }}>{apt.service?.name}</td>
+                                            <td style={{ padding: '0.9rem 1rem', color: 'var(--text-light)' }}>
+                                                {apt.guestName}<br/>
+                                                <span style={{ fontSize: '0.75rem', color: 'var(--text)' }}>{apt.guestPhone}</span>
+                                            </td>
+                                            <td style={{ padding: '0.9rem 1rem', color: 'var(--text-light)' }}>
+                                                {apt.services?.map(s => s.name).join(', ')}
+                                            </td>
                                             <td style={{ padding: '0.9rem 1rem', color: 'var(--text)', whiteSpace: 'nowrap' }}>{new Date(apt.date).toLocaleDateString('en-IN')}</td>
                                             <td style={{ padding: '0.9rem 1rem', color: 'var(--text)' }}>{apt.timeSlot}</td>
-                                            <td style={{ padding: '0.9rem 1rem', color: 'var(--gold)', fontWeight: 600 }}>₹{apt.service?.price}</td>
+                                            <td style={{ padding: '0.9rem 1rem', color: 'var(--gold)', fontWeight: 600 }}>₹{apt.totalAmount}</td>
                                             <td style={{ padding: '0.9rem 1rem' }}><span className={`badge badge-${apt.status}`}>{apt.status}</span></td>
                                             <td style={{ padding: '0.9rem 1rem' }}>
                                                 <select defaultValue={apt.status} onChange={e => updateStatus(apt._id, e.target.value)}

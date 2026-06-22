@@ -65,10 +65,10 @@ export default function AdminDashboard() {
                                         <tbody>
                                             {stats.recentAppointments.map(apt => (
                                                 <tr key={apt._id} style={{ borderBottom: '1px solid var(--border)' }}>
-                                                    <td style={{ padding: '0.75rem', color: 'var(--text-light)' }}>{apt.user?.name}</td>
-                                                    <td style={{ padding: '0.75rem', color: 'var(--text-light)' }}>{apt.service?.name}</td>
+                                                    <td style={{ padding: '0.75rem', color: 'var(--text-light)' }}>{apt.guestName}</td>
+                                                    <td style={{ padding: '0.75rem', color: 'var(--text-light)' }}>{apt.services?.map(s => s.name).join(', ')}</td>
                                                     <td style={{ padding: '0.75rem' }}><span className={`badge badge-${apt.status}`}>{apt.status}</span></td>
-                                                    <td style={{ padding: '0.75rem', color: 'var(--gold)', fontWeight: 600 }}>₹{apt.service?.price}</td>
+                                                    <td style={{ padding: '0.75rem', color: 'var(--gold)', fontWeight: 600 }}>₹{apt.totalAmount}</td>
                                                 </tr>
                                             ))}
                                         </tbody>
