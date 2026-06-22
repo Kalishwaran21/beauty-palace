@@ -27,4 +27,28 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// GET /api/auth/init-admin - Securely initialize the very first admin account
+router.get('/init-admin', async (req, res) => {
+    try {
+        const adminEmail = 'admin@larastyles.com';
+        let admin = await User.findOne({ email: adminEmail });
+        
+        if (admin) {
+            return res.json({ message: 'Admin already exists. You can log in.' });
+        }
+        
+        admin = new User({
+            name: 'System Admin',
+            email: adminEmail,
+            password: 'admin123',
+            phone: '9876543210',
+            role: 'admin'
+        });
+        await admin.save();
+        res.status(201).json({ message: 'Admin user created successfully! You can now log in.' });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 module.exports = router;
