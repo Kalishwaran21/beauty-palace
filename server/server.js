@@ -8,7 +8,13 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(cors({
+    origin: function(origin, callback) {
+        // Allow all origins (useful for Netlify preview URLs and production)
+        callback(null, true);
+    },
+    credentials: true
+}));
 app.use(express.json());
 
 // Routes
